@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  nginx:
+    depends_on:
+      - api
+      - client
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "3050:80"
+  api:
+    build:
+      context: ./webapp
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./webapp/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8080:8080"
+    env_file: ./webapp/.env
+    environment:
+      - NODE_ENV=development
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./webapp/client
+    volumes:
+      - ./webapp/client/:/usr/src/app
+      - /usr/src/app/node_modules

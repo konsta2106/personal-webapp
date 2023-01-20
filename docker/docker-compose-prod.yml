@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+   server:
+     image: konsta2106/webapp-server:latest
+     ports:
+       - 8080
+     restart: always
