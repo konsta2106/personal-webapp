@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import Construction from './Construction';
 
-const underConstruction = true
+const underConstruction = false
 
 const Skills = () => {
   const [skills, setSkills] = useState([])
